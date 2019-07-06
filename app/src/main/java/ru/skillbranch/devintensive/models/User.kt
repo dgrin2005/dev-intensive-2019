@@ -42,22 +42,22 @@ data class User (
 
     inner class Builder
     {
-        fun id(id: String): Builder {
+        fun id(id: String = "0"): Builder {
             this@User.id = id
             return this
         }
 
-        fun firstName(firstName: String?): Builder {
+        fun firstName(firstName: String? = "John"): Builder {
             this@User.firstName = firstName
             return this
         }
 
-        fun lastName(lastName: String?): Builder {
+        fun lastName(lastName: String? = "Doe"): Builder {
             this@User.lastName = lastName
             return this
         }
 
-        fun avatar(avatar: String): Builder {
+        fun avatar(avatar: String? = ""): Builder {
             this@User.avatar = avatar
             return this
         }
