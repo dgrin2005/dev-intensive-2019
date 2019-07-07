@@ -30,6 +30,17 @@ data class User (
         id = "0"
     )
 
+    private constructor(builder: Builder) : this() {
+        id = builder.id
+        firstName = builder.firstName
+        lastName = builder.lastName
+        avatar = builder.avatar
+        rating = builder.rating
+        respect = builder.respect
+        lastVisit = builder.lastVisit
+        isOnline = builder.isOnline
+    }
+
     companion object Factory {
         private var lastId = -1
 
@@ -40,51 +51,33 @@ data class User (
         }
     }
 
-    inner class Builder
-    {
-        fun id(id: String = "0"): Builder {
-            this@User.id = id
-            return this
-        }
+    class Builder {
+        var id: String = "0"
+        var firstName: String? = null
+        var lastName: String? = null
+        var avatar: String? = null
+        var rating: Int = 0
+        var respect: Int = 0
+        var lastVisit: Date? = Date()
+        var isOnline: Boolean = false
 
-        fun firstName(firstName: String? = "John"): Builder {
-            this@User.firstName = firstName
-            return this
-        }
+        fun id(id: String = "0") = apply { this.id = id }
 
-        fun lastName(lastName: String? = "Doe"): Builder {
-            this@User.lastName = lastName
-            return this
-        }
+        fun firstName(firstName: String? = null) = apply { this.firstName = firstName }
 
-        fun avatar(avatar: String? = ""): Builder {
-            this@User.avatar = avatar
-            return this
-        }
+        fun lastName(lastName: String? = null) = apply { this.lastName = lastName }
 
-        fun rating(rating: Int = 0): Builder {
-            this@User.rating = rating
-            return this
-        }
+        fun avatar(avatar: String? = null) = apply { this.avatar = avatar }
 
-        fun respect(respect: Int = 0): Builder {
-            this@User.respect = respect
-            return this
-        }
+        fun rating(rating: Int = 0) = apply { this.rating = rating }
 
-        fun lastVisit(lastVisit: Date? = Date()): Builder {
-            this@User.lastVisit = lastVisit
-            return this
-        }
+        fun respect(respect: Int = 0) = apply { this.respect = respect }
 
-        fun isOnline(isOnline: Boolean = false): Builder {
-            this@User.isOnline = isOnline
-            return this
-        }
+        fun lastVisit(lastVisit: Date? = Date()) = apply { this.lastVisit = lastVisit }
 
-        fun build(): User {
-            return this@User
-        }
+        fun isOnline(isOnline: Boolean = false) = apply { this.isOnline = isOnline }
+
+        fun build() = User(this)
 
     }
 }
